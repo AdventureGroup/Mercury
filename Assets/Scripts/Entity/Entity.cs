@@ -21,22 +21,21 @@ public class Entity : MonoBehaviour
     {
         _node = new LinkedListNode<Entity>(this);
         _coll = GetComponent<Collider2D>();
-        _coll.isTrigger = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Entity")) OnTouchOtherEntity(other.GetComponent<Entity>());
+        if (other.collider.CompareTag("Entity")) OnTouchOtherEntity(other.collider.GetComponent<Entity>());
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.CompareTag("Entity")) OnTouchOtherEntity(other.GetComponent<Entity>());
+        if (other.collider.CompareTag("Entity")) OnTouchOtherEntity(other.collider.GetComponent<Entity>());
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.CompareTag("Entity")) OnStopTouchOtherEntity(other.GetComponent<Entity>());
+        if (other.collider.CompareTag("Entity")) OnStopTouchOtherEntity(other.collider.GetComponent<Entity>());
     }
 
     /// <summary>

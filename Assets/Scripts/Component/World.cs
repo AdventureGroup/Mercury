@@ -32,11 +32,17 @@ public class World : MonoBehaviour
     /// </summary>
     public float WorldTime => _worldTime;
 
+    private void Start()
+    {
+        _activeEntity = new LinkedList<Entity>();
+        _cmdQueue = new PriorityQueue<EntityGenerator.Command>();
+    }
+
     private void Update()
     {
         _worldTime += Time.deltaTime;
         EntityGenerator.Command cmd;
-        while (_cmdQueue != null && !_cmdQueue.IsEmpty && (cmd = _cmdQueue.Peek()).Time >= WorldTime)
+        while (!_cmdQueue.IsEmpty && (cmd = _cmdQueue.Peek()).Time >= WorldTime)
         {
             _cmdQueue.Dequeue();
             var entity = CreateEntity(cmd.EntityObject);
@@ -51,8 +57,6 @@ public class World : MonoBehaviour
     /// </summary>
     public virtual void OnLoad()
     {
-        _activeEntity = new LinkedList<Entity>();
-        _cmdQueue = new PriorityQueue<EntityGenerator.Command>();
         foreach (var gen in Generator)
         {
             foreach (var cmd in gen.GetCommands())
