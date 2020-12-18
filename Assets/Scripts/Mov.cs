@@ -15,18 +15,12 @@ public class Mov : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             dir.y = 1;
-            if (_cc2d.IsTopUnderPlatform)
-            {
-                _cc2d.IsIgnorePlatform = true;
-            }
+            _cc2d.IsIgnorePlatform = true;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             dir.y = -1;
-            if (_cc2d.IsBottomOnPlatform)
-            {
-                _cc2d.IsIgnorePlatform = true;
-            }
+            _cc2d.IsIgnorePlatform = true;
         }
 
         if (Input.GetKey(KeyCode.A))
