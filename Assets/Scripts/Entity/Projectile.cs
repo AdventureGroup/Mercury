@@ -5,22 +5,21 @@ using UnityEngine;
 public class Projectile : LivingEntity
 {
     private float createTime;
+
+    public override void Healing()
+    {
+        Health -= 1;
+    }
     public override void Death()
     {
         Object.Destroy(this);
     }
-    void Init()
+    protected override void Create()
     {
         createTime = Time.time + 120;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        Init();
-    }
 
-    // Update is called once per frame
-    void Update()
+    protected override void PerFrame()
     {
         if (createTime < Time.time)
         {

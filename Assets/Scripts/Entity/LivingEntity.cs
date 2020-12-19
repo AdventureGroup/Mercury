@@ -4,25 +4,38 @@ using UnityEngine;
 
 public class LivingEntity : Entity
 {
+    /// <summary>
+    /// <para>当前生命值，如果为0 则会调用Death函数 这里Death函数提供重写方案</para>
+    /// </summary>
     public float Health;
-    public float HealthRec;
     public float Velocity;
     public float Direction;
-
-    public virtual void Healing()
-    {
-        Health += HealthRec;
-    }
-    public virtual void Death()
+    /// <summary>
+    /// 每帧会调用的函数，用于修改生命值的函数。
+    /// </summary>
+    public virtual void Healing(){}
+    /// <summary>
+    /// 当生命值小于等于0的时候系统会自动调用该函数。
+    /// </summary>
+    public virtual void Death(){}
+    protected virtual void Create() { }
+    protected virtual void PerFrame() { }
+    public virtual void Move() 
     {
         
     }
-    private void Update()
+    void Update()
     {
+        PerFrame();
         Healing();
         if (Health <= 0)
             Death();
     }
-   
+    public override void OnCreated()
+    {
+        base.OnCreated();
+        Create();
+    }
+
 
 }

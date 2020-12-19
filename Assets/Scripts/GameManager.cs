@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     private ResourceDatabase _db;
     private Camera _mainCamera;
-    private World _activeWorld;
+    [SerializeField]private World _activeWorld;
 
     /// <summary>
     /// 数据
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         if (_activeWorld != null) throw new InvalidOperationException("存在活动中世界");
         var world = Instantiate(worldObject);
-        _activeWorld = worldObject.GetComponent<World>();
+        _activeWorld = world.GetComponent<World>();
         if (_activeWorld == null)
         {
             Destroy(world);

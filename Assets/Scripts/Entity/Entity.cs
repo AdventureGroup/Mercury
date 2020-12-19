@@ -17,7 +17,7 @@ public class Entity : MonoBehaviour
     /// </summary>
     public event Action Destroyed;
 
-    private void Start()
+    private void Awake()
     {
         _node = new LinkedListNode<Entity>(this);
         _coll = GetComponent<Collider2D>();
@@ -51,7 +51,9 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// 当实体被创建时触发方法
     /// </summary>
-    public virtual void OnCreated() { }
+    public virtual void OnCreated() 
+    {
+    }
 
     /// <summary>
     /// 当实体被销毁时触发方法
