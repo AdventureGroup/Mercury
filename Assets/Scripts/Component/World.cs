@@ -81,8 +81,7 @@ public class World : MonoBehaviour
     public Entity CreateEntity(GameObject entityObject)
     {
         var ins = Instantiate(entityObject);
-        var e = ins.GetComponent<Entity>();
-        if (e == null)
+        if (!ins.TryGetComponent(out Entity e))
         {
             Destroy(ins);
             throw new ArgumentException(nameof(entityObject));

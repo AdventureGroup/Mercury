@@ -277,13 +277,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32aa43da946491c8bfc269e989969a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsIgnorePlatform: 0
   PlatformLayer:
     serializedVersion: 2
     m_Bits: 256
   OneWayPlatformLayer:
     serializedVersion: 2
     m_Bits: 512
+  MaxSlopeAngle: 15
   SkinWidth: 0.01
+  MaxIterations: 2
   FloatEpsilon: 0.00001
 --- !u!1 &1751562729
 GameObject:
@@ -443,3 +446,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0222acb4693421a8a012fd45670bf08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _activeWorld: {fileID: 0}
