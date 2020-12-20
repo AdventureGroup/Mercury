@@ -22,10 +22,14 @@ public class LivingEntity : Entity
     protected virtual void PerFrame() { }
     public virtual void Move() 
     {
-        
+        var tr = transform.position;
+        tr.x += Mathf.Cos(Direction * Mathf.PI / 180) * Velocity * Time.deltaTime;
+        tr.y += Mathf.Sin(Direction * Mathf.PI / 180) * Velocity * Time.deltaTime;
+        transform.position = tr;
     }
     void Update()
     {
+        Move();
         PerFrame();
         Healing();
         if (Health <= 0)

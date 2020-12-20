@@ -8,11 +8,11 @@ public class Projectile : LivingEntity
 
     public override void Healing()
     {
-        Health -= 1;
+        Health -= 1 * Time.deltaTime;
     }
     public override void Death()
     {
-        Object.Destroy(this);
+        GameManager.Instance.ActiveWorld.Value.DestroyEntity(this);
     }
     protected override void Create()
     {
@@ -23,7 +23,7 @@ public class Projectile : LivingEntity
     {
         if (createTime < Time.time)
         {
-            Death();
+            //Death();
         }
     }
 }

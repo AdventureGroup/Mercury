@@ -20,11 +20,22 @@ public class IceSpear : Skill
         Casting = CastTime;
         Releaseing = ReleaseTime;
     }
+
+    [System.Obsolete]
     protected override void OnUsing()
     {
         Releaseing = 0;
         var to =  GameManager.Instance.ActiveWorld.Value.CreateEntity(PreIceSpear);
         to.transform.position = role.transform.position;
+
+        var angle = to.transform.eulerAngles;
+        angle.z = Direction;
+        to.transform.eulerAngles = angle;
+        //var Rotate = to.transform.rotation;
+        //to.transform.rotation.SetAxisAngle(Vector3.zero, Direction);
+        //to.transform.rotation = Rotate;
+
+
         Projectile pro = to.GetComponent<Projectile>();
         pro.Velocity = 3;
         pro.Direction = Direction;
