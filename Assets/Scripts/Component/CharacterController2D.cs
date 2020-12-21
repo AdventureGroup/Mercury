@@ -11,9 +11,9 @@ public class CharacterController2D : MonoBehaviour
     public bool IsIgnorePlatform;
 
     /// <summary>
-    /// 不可穿越的平台碰撞层
+    /// 碰撞层
     /// </summary>
-    public LayerMask PlatformLayer;
+    public LayerMask CollideLayer;
 
     /// <summary>
     /// 可穿越的平台碰撞层
@@ -60,7 +60,7 @@ public class CharacterController2D : MonoBehaviour
     /// <summary>
     /// 是否和地面碰撞
     /// </summary>
-    public bool IsGrounded => AttachedRigidBody.IsTouchingLayers(PlatformLayer | OneWayPlatformLayer);
+    public bool IsGrounded => AttachedRigidBody.IsTouchingLayers(CollideLayer | OneWayPlatformLayer);
 
     /// <summary>
     /// 是否和可穿过平台碰撞
@@ -86,8 +86,8 @@ public class CharacterController2D : MonoBehaviour
         {
             useLayerMask = true,
             layerMask = IsIgnorePlatform || _isLastIgnore && ground
-                ? PlatformLayer & ~OneWayPlatformLayer
-                : PlatformLayer | OneWayPlatformLayer
+                ? CollideLayer & ~OneWayPlatformLayer
+                : CollideLayer | OneWayPlatformLayer
         };
         var maxIterations = MaxIterations;
         while (maxIterations-- > 0 && distanceLen > FloatEpsilon && direction.sqrMagnitude > FloatEpsilon)

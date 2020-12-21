@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// 仅用于测试运动
 /// </summary>
-public class Mov : MonoBehaviour
+public class TestPlayerMove : MonoBehaviour
 {
     private CharacterController2D _cc2d;
 
-    private void Start() { _cc2d = GetComponent<CharacterController2D>(); }
+    private void Start() { _cc2d = GetComponent<CharacterController2D>() ?? throw new ArgumentException(); }
 
     private void Update()
     {

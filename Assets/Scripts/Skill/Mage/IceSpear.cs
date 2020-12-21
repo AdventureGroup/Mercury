@@ -21,7 +21,6 @@ public class IceSpear : Skill
         Releaseing = ReleaseTime;
     }
 
-    [System.Obsolete]
     protected override void OnUsing()
     {
         Releaseing = 0;

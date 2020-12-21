@@ -10,4 +10,9 @@ public class ResourceDatabase : ScriptableObject
     /// 地图
     /// </summary>
     public World[] Worlds;
+
+    /// <summary>
+    /// 实体
+    /// </summary>
+    public Entity[] Entities;
 }

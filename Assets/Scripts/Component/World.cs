@@ -32,7 +32,7 @@ public class World : MonoBehaviour
     /// </summary>
     public float WorldTime => _worldTime;
 
-    private void Start()
+    private void Awake()
     {
         _activeEntity = new LinkedList<Entity>();
         _cmdQueue = new PriorityQueue<EntityGenerator.Command>();

@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _mainCamera = Camera.main;
-        LoadWorld(0);
     }
 
     /// <summary>
