@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
 {
     private Collider2D _coll;
     private LinkedListNode<Entity> _node;
+    public String Camp = "Noon";
 
     public Collider2D Collider => _coll;
     public LinkedListNode<Entity> InternalNode => _node;

@@ -18,6 +18,15 @@ public class LivingEntity : Entity
     /// 当生命值小于等于0的时候系统会自动调用该函数。
     /// </summary>
     public virtual void Death(){}
+    /// <summary>
+    /// 受到攻击的时候调用，可以被复写
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="dam"></param>
+    public virtual void UnderAttack(LivingEntity from,Dam dam)
+    {
+        Health -= dam.Damage;
+    }
     protected virtual void Create() { }
     protected virtual void PerFrame() { }
     public virtual void Move() 
