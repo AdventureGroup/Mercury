@@ -12,8 +12,8 @@ public class TemperatureMagic : MonoBehaviour
     /// 寒冰的加成系数
     /// </summary>
     public float ArgumentIce = 0.3f;
-    public int FireLayers { private set; get; }
-    public int IceLayers{ private set; get; }
+    public int FireLayers; //{ private set; get; }
+    public int IceLayers; //{ private set; get; }
     public float FireDamage{ get => FireLayers * ArgumentFire + 1; }
     public float IceDamage{ get => IceLayers * ArgumentIce + 1; }
     public void FireCast(int CastCount)
