@@ -8,8 +8,8 @@ public class Projectile : LivingEntity
     public Dam damage;
     protected override void OnTouchOtherEntity(Entity other)
     {
+        base.OnTouchOtherEntity(other);
         Death();
-        //base.OnTouchOtherEntity(other);
         if (!(other is Role e))
             return;
         Attf.DealDamage(this, e, damage);

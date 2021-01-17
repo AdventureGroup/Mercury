@@ -71,7 +71,7 @@ public class PanelDebug : MonoBehaviour
         {
             var prefab = _gm.Db.Entities[int.Parse(playerField.text)];
             var entity = _gm.ActiveWorld.Value.CreateEntity(prefab.gameObject);
-            entity.gameObject.AddComponent<TestPlayerMove>();//TODO:实现真正的
+            entity.gameObject.AddComponent<TestPlayerMove>(); //TODO:实现真正的
         }
         catch (Exception e)
         {
@@ -93,6 +93,8 @@ public class PanelDebug : MonoBehaviour
         //执行一键脚本的内容在这里
         _gm.LoadWorld(0);
         var world = _gm.ActiveWorld.Value;
+        var dummy = world.CreateEntity(_gm.Db.Entities[0].gameObject);
+        dummy.gameObject.AddComponent<TestPlayerMove>();
         world.CreateEntity(_gm.Db.Entities[1].gameObject);
     }
 }

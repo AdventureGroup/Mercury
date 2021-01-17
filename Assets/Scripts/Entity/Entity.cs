@@ -42,12 +42,18 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// 当接触到某个实体时触发方法
     /// </summary>
-    protected virtual void OnTouchOtherEntity(Entity other) { }
+    protected virtual void OnTouchOtherEntity(Entity other)
+    {
+        Debug.Log($"{name} {other.gameObject.name}");
+    }
 
     /// <summary>
     /// 当不再接触某个实体时触发方法
     /// </summary>
-    protected virtual void OnStopTouchOtherEntity(Entity other) { }
+    protected virtual void OnStopTouchOtherEntity(Entity other)
+    {
+        Debug.Log($"{name} {other.gameObject.name}");
+    }
 
     /// <summary>
     /// 当实体被创建时触发方法
