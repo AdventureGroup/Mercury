@@ -37,6 +37,11 @@ public class IceSpear : Skill
         Projectile pro = to.GetComponent<Projectile>();
         pro.Velocity = 3;
         pro.Direction = Direction;
+        var _dam = new DamageClass();
+        _dam.Damage = 60f;
+        _dam.Element.Ice = true;
+        pro.damage = _dam;
+
     }
     protected override bool CanCast()
     {
@@ -48,7 +53,7 @@ public class IceSpear : Skill
     }
     protected override void AfterUsing()
     {
-        TempMagic.FireCast(1);
+        TempMagic.IceCast(1);
         role.SkillCast = "Noon";
         role.State = "Stiff";
     }

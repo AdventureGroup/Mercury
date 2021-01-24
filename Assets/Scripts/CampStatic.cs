@@ -11,7 +11,7 @@ public class CampStatic
         if (self.Camp == "Main")
         {
             if (other.Camp == "Enemy")
-            return false;
+            return true;
         }
         return false;
     }

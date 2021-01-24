@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dam
+public class DamageClass
 {
     /// <summary>
     /// 伤害
@@ -10,8 +10,8 @@ public class Dam
     public float Damage;
     public struct elem
     {
-        bool Fire;
-        bool Ice;
+        public bool Fire;
+        public bool Ice;
     };
     /// <summary>
     /// 包含的属性，可以点出来

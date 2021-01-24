@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attf
 {
-    public static void DealDamage(LivingEntity from,LivingEntity to,Dam damage)
+    public static void DealDamage(LivingEntity from,LivingEntity to,DamageClass damage)
     {
         to.UnderAttack(from, damage);
     }

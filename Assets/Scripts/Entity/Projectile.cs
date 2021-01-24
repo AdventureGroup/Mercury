@@ -5,19 +5,19 @@ using UnityEngine;
 public class Projectile : LivingEntity
 {
     private float createTime;
-    public Dam damage;
+    public DamageClass damage;
     protected override void OnTouchOtherEntity(Entity other)
     {
         base.OnTouchOtherEntity(other);
-        Death();
         if (!(other is Role e))
             return;
-        Attf.DealDamage(this, e, damage);
+        //_ = other is Role e;
+        //Attf.DealDamage(this, e, damage);
         if (CampStatic.CompareCamp(this, other))
         {
             Attf.DealDamage(this, e, damage);
-            Death();
         }
+        Death();
     }
     public override void Healing()
     {

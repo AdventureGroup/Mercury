@@ -23,7 +23,7 @@ public class LivingEntity : Entity
     /// </summary>
     /// <param name="from"></param>
     /// <param name="dam"></param>
-    public virtual void UnderAttack(LivingEntity from,Dam dam)
+    public virtual void UnderAttack(LivingEntity from,DamageClass dam)
     {
         Health -= dam.Damage;
     }
