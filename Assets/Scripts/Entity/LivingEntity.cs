@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class LivingEntity : Entity
@@ -10,6 +9,9 @@ public class LivingEntity : Entity
     public float Health;
     public float Velocity;
     public float Direction;
+    
+    public event Action<LivingEntity, DamageClass> Attacked;
+    
     /// <summary>
     /// 每帧会调用的函数，用于修改生命值的函数。
     /// </summary>
@@ -25,6 +27,7 @@ public class LivingEntity : Entity
     /// <param name="dam"></param>
     public virtual void UnderAttack(LivingEntity from,DamageClass dam)
     {
+        Attacked?.Invoke(from, dam);
         Health -= dam.Damage;
     }
     protected virtual void Create() { }

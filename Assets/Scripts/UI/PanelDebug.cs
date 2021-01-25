@@ -93,8 +93,10 @@ public class PanelDebug : MonoBehaviour
         //执行一键脚本的内容在这里
         _gm.LoadWorld(0);
         var world = _gm.ActiveWorld.Value;
-        var dummy = world.CreateEntity(_gm.Db.Entities[0].gameObject);
+        var dummy = world.CreateEntity(_gm.Db.Entities[1].gameObject);
         dummy.gameObject.AddComponent<TestPlayerMove>();
-        world.CreateEntity(_gm.Db.Entities[1].gameObject);
+
+        var doll = world.CreateEntity(_gm.Db.Entities[2].gameObject);
+        // world.CreateEntity(_gm.Db.Entities[1].gameObject);
     }
 }

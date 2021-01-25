@@ -9,7 +9,7 @@ public class Projectile : LivingEntity
     protected override void OnTouchOtherEntity(Entity other)
     {
         base.OnTouchOtherEntity(other);
-        if (!(other is Role e))
+        if (!(other is LivingEntity e))
             return;
         //_ = other is Role e;
         //Attf.DealDamage(this, e, damage);

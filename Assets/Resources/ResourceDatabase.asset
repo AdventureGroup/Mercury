@@ -17,3 +17,4 @@ MonoBehaviour:
   Entities:
   - {fileID: 5869267246727678765, guid: 65fd977799ef8c64b873490dcfd6e202, type: 3}
   - {fileID: 1870333215859557021, guid: 22a0de948c7de1e4c95878aa358f62de, type: 3}
+  - {fileID: 7521632955683561268, guid: 23c53c48d13df084187a53b8d7709abc, type: 3}

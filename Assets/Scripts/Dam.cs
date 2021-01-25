@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DamageClass
+﻿public class DamageClass
 {
     /// <summary>
     /// 伤害
@@ -12,6 +8,11 @@ public class DamageClass
     {
         public bool Fire;
         public bool Ice;
+
+        public override string ToString()
+        {
+            return $"火:{Fire} 冰:{Ice}";
+        }
     };
     /// <summary>
     /// 包含的属性，可以点出来
