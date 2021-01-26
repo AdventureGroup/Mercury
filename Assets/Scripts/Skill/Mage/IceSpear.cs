@@ -9,14 +9,19 @@ public class IceSpear : Skill
     public float Direction;
     protected override void OnSkillInit()
     {
-        TempMagic = GetComponent<TemperatureMagic>();
-        CoolDownTime = 2;
+        PreIceSpear = GameManager.Instance.Db.Effects[0].gameObject;
+        SkillState = "IceSpear";
+        CoolDownTime = 0;
+        CastTime = 0;
         ReleaseTime = 1;
+        StiffTime = 1;
+
+        TempMagic = GetComponent<TemperatureMagic>();
     }
     protected override void BeforeUsing()
     {
         CoolDowning = CoolDownTime;
-        role.SkillCast = "IceSpear";
+        role.SkillCast = SkillState;
         Casting = CastTime;
         Releaseing = ReleaseTime;
     }
@@ -29,14 +34,15 @@ public class IceSpear : Skill
         to.Camp = role.Camp;
 
         var angle = to.transform.eulerAngles;
-        angle.z = Direction;
+        angle.z = role.GetFaceAngle();
+        
         to.transform.eulerAngles = angle;
         
 
 
         Projectile pro = to.GetComponent<Projectile>();
         pro.Velocity = 3;
-        pro.Direction = Direction;
+        pro.Direction = role.GetFaceAngle();
         var _dam = new DamageClass();
         _dam.Damage = 60f;
         _dam.Element.Ice = true;
@@ -49,13 +55,14 @@ public class IceSpear : Skill
             return false;
         if (CoolDowning > 0)
             return false;
+        if (role.State != "Noon")
+            return false;
+
         return true;
     }
     protected override void AfterUsing()
     {
         TempMagic.IceCast(1);
-        role.SkillCast = "Noon";
-        role.State = "Stiff";
     }
     protected override void OnUpdate()
     {

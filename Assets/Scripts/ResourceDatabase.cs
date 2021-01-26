@@ -15,4 +15,8 @@ public class ResourceDatabase : ScriptableObject
     /// 实体
     /// </summary>
     public Entity[] Entities;
+    /// <summary>
+    /// 特效
+    /// </summary>
+    public Entity[] Effects;
 }

@@ -8,10 +8,25 @@
     {
         public bool Fire;
         public bool Ice;
+        public bool Thunder;
+        public bool Water;
+        public bool Wind;
+
+        public bool Light;
+        public bool Dark;
 
         public override string ToString()
         {
-            return $"火:{Fire} 冰:{Ice}";
+            string s = "";
+            if (Fire) s += "Fire ";
+            if (Ice) s += "Ice ";
+            if (Thunder) s += "Thunder ";
+            if (Water) s += "Water ";
+            if (Wind) s += "Wind ";
+            if (Light) s += "Light ";
+            if (Dark) s += "Dark ";
+
+            return s;
         }
     };
     /// <summary>

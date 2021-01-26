@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
+    public string SkillState;
     protected Role role;
     /// <summary>
     /// 属性
@@ -40,6 +41,8 @@ public class Skill : MonoBehaviour
     /// </summary>
     public float CoolDowning = 0;
 
+    public float StiffTime = 0;
+
 
     /// <summary>
     /// 注意：为了防止重复处罚技能，请务必重写该函数。
@@ -66,7 +69,7 @@ public class Skill : MonoBehaviour
 
     private void Start()
     {
-        role = GetComponent<Role>() ?? throw new ArgumentException("cnm!");
+        role = GetComponent<Role>() ?? throw new ArgumentException("？ 释放技能的不是role类型");
         OnSkillInit();
     }
 
@@ -76,21 +79,37 @@ public class Skill : MonoBehaviour
     {
         OnUpdate();
         if (CanCast() == true)
+        {
+            CoolDowning = CoolDownTime;
+            role.SkillCast = SkillState;
+            Casting = CastTime;
+            Releaseing = ReleaseTime;
+
             BeforeUsing();
+        }
         if (CoolDowning > 0)
             CoolDowning -= Time.deltaTime;
-        if (role.SkillCast == "IceSpear")
+        if (role.SkillCast == SkillState)
         {
             if (Casting > 0)
                 Casting -= Time.deltaTime;
+            if (Casting > 0)
+            {
+                OnCasting();
+                return ;
+            }
             if (Releaseing > 0 && Casting <= 0)
                 Releaseing -= Time.deltaTime;
-            if (Casting > 0)
-                OnCasting();
             if (Releaseing > 0)
+            {
                 OnUsing();
+                return;
+            }
             if (Releaseing <= 0)
             {
+                role.SkillCast = "Noon";
+                role.State = "Stiff";
+                role.StiffTime = StiffTime;
                 AfterUsing();
             }
         }

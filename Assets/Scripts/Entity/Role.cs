@@ -11,7 +11,7 @@ public class Role : LivingEntity
     public float Mana;
     public string SkillCast = "Noon";
     public string State = "Noon";
-
+    public float StiffTime = 0;
     public ConstProperty Value, Property;
     public override void Healing()
     {
@@ -20,5 +20,32 @@ public class Role : LivingEntity
     }
 
 
+    protected override void PerFrame()
+    {
+
+        StiffTime -= Time.deltaTime;
+        if (StiffTime <= 0 && State == "Stiff")
+            State = "Noon";
+    }
+
+    private bool FaceTo;
+    public int GetFaceTo()
+    {
+        if (!FaceTo) return -1;
+        return 1;
+    }
+    public float GetFaceAngle()
+    {
+        if (FaceTo) return 0;
+        return 180;
+    }
+    public void SetFaceToLeft()
+    {
+        FaceTo = false;
+    }
+    public void SetFaceToRight()
+    {
+        FaceTo = true;
+    }
 
 }

@@ -6,12 +6,28 @@ public class Projectile : LivingEntity
 {
     private float createTime;
     public DamageClass damage;
+    private bool Quadratic;
+    //public float LiveTime;
+
+    private float deltaX;
+    private float nowX;
+    private float deltaY;
+    private float nowY;
+    public void SetMoveX(float delta,float start)
+    {
+        deltaX = delta;
+        nowX = start;
+    }
+    public void SetMoveY(float delta, float start)
+    {
+        deltaY = delta;
+        nowY = start;
+    }
     protected override void OnTouchOtherEntity(Entity other)
     {
         base.OnTouchOtherEntity(other);
         if (!(other is LivingEntity e))
             return;
-        //_ = other is Role e;
         //Attf.DealDamage(this, e, damage);
         if (CampStatic.CompareCamp(this, other))
         {
@@ -19,9 +35,10 @@ public class Projectile : LivingEntity
         }
         Death();
     }
+    
     public override void Healing()
     {
-        Health -= 1 * Time.deltaTime;
+        Health -= Time.deltaTime;
     }
     public override void Death()
     {
@@ -38,5 +55,19 @@ public class Projectile : LivingEntity
         {
             //Death();
         }
+    }
+    public override void Move()
+    {
+        if (!Quadratic)
+        {
+            base.Move();
+            return;
+        }
+        var tr = transform.position;
+        tr.x += nowX;
+        tr.y += nowY;
+        nowX -= Time.deltaTime * deltaX;
+        nowY -= Time.deltaTime * deltaY;
+
     }
 }
