@@ -6,20 +6,24 @@ public class Projectile : LivingEntity
 {
     private float createTime;
     public DamageClass damage;
-    private bool Quadratic;
+    private bool Quadratic = false;
     //public float LiveTime;
 
-    private float deltaX;
-    private float nowX;
-    private float deltaY;
-    private float nowY;
+    public float deltaX;
+    public float nowX;
+    public float deltaY;
+    public float nowY;
+
+    public GameObject track;
     public void SetMoveX(float delta,float start)
     {
+        Quadratic = true;
         deltaX = delta;
         nowX = start;
     }
     public void SetMoveY(float delta, float start)
     {
+        Quadratic = true;
         deltaY = delta;
         nowY = start;
     }
@@ -64,10 +68,10 @@ public class Projectile : LivingEntity
             return;
         }
         var tr = transform.position;
-        tr.x += nowX;
-        tr.y += nowY;
-        nowX -= Time.deltaTime * deltaX;
-        nowY -= Time.deltaTime * deltaY;
-
+        tr.x += nowX * Time.deltaTime;
+        tr.y += nowY * Time.deltaTime;
+        nowX += Time.deltaTime * deltaX;
+        nowY += Time.deltaTime * deltaY;
+        transform.position = tr;
     }
 }

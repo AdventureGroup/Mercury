@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1870333215859557010}
   - component: {fileID: 1453344806723191322}
   - component: {fileID: 5710639574662678637}
+  - component: {fileID: -201210180818807382}
   m_Layer: 0
   m_Name: known_entity
   m_TagString: Untagged
@@ -132,6 +133,7 @@ MonoBehaviour:
   Mana: 0
   SkillCast: NOON
   State: Noon
+  StiffTime: 0
   Value:
     HealthMax: 600
     HealthRec: 0
@@ -180,8 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bb8a3099d239043ad71b16aa588198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillState: 
   Releaseing: 0
   CoolDowning: 0
+  StiffTime: 0
   PreIceSpear: {fileID: 1228320874925974336, guid: 4e5544b41fe4e8b4fb8bdc8ec8acb78a,
     type: 3}
   Direction: 1.68
@@ -244,3 +248,21 @@ MonoBehaviour:
   SkinWidth: 0.01
   MaxIterations: 2
   FloatEpsilon: 0.00001
+--- !u!114 &-201210180818807382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870333215859557016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2ce685573cdf049a6f3c0ec264c0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillState: 
+  Releaseing: 0
+  CoolDowning: 0
+  StiffTime: 0
+  PreFireBall: {fileID: 0}
+  Direction: 0

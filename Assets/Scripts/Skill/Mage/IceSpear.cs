@@ -14,16 +14,13 @@ public class IceSpear : Skill
         CoolDownTime = 0;
         CastTime = 0;
         ReleaseTime = 1;
-        StiffTime = 1;
+        StiffTime = 0;
 
         TempMagic = GetComponent<TemperatureMagic>();
     }
     protected override void BeforeUsing()
     {
-        CoolDowning = CoolDownTime;
-        role.SkillCast = SkillState;
-        Casting = CastTime;
-        Releaseing = ReleaseTime;
+
     }
 
     protected override void OnUsing()
