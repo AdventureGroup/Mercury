@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TemperatureMagic : MonoBehaviour
+public class TemperatureMagic : Skill
 {
+    public float Timer;
     /// <summary>
     /// 火焰的加成系数
     /// </summary>
@@ -23,6 +24,7 @@ public class TemperatureMagic : MonoBehaviour
                 IceLayers--;
             else
                 FireLayers++;
+        Timer = 5;
     }
     public void IceCast(int CastCount)
     {
@@ -31,15 +33,18 @@ public class TemperatureMagic : MonoBehaviour
                 FireLayers--;
             else
                 IceLayers++;
+        Timer = 5;
     }
     public void FireTo(int ChangeTo)
     {
         FireLayers = ChangeTo;
         IceLayers = 0;
+        Timer = 5;
     }
     public void IceTo(int ChangeTo)
     {
         IceLayers = ChangeTo;
         FireLayers = 0;
+        Timer = 5;
     }
 }
