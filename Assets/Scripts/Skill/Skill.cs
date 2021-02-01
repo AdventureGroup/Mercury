@@ -82,6 +82,7 @@ public class Skill : MonoBehaviour
         {
             CoolDowning = CoolDownTime;
             role.SkillCast = SkillState;
+            role.State = SkillState;
             Casting = CastTime;
             Releaseing = ReleaseTime;
 

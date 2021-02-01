@@ -15,6 +15,8 @@ public class Role : LivingEntity
     public float StiffTime = 0;
     public ConstProperty Value, Property;
 
+    public bool debug;
+
 
     public override void Healing()
     {
@@ -25,6 +27,7 @@ public class Role : LivingEntity
 
     protected override void PerFrame()
     {
+        debug = false;
         StiffTime -= Time.deltaTime;
         if (StiffTime <= 0 && State == "Stiff")
             State = "Noon";
@@ -34,6 +37,7 @@ public class Role : LivingEntity
             var a = transform.localScale;
             a.x = Mathf.Abs(a.x);
             transform.localScale = a;
+            SetFaceToRight();
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -41,16 +45,20 @@ public class Role : LivingEntity
             var a = transform.localScale;
             a.x = -Mathf.Abs(a.x);
             transform.localScale = a;
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
             SetFaceToLeft();
         }
-        if (Input.GetKeyDown(KeyCode.D))
+
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            SetFaceToRight();
+            anim.SetBool("Move", true);
         }
+        else
+        {
+            anim.SetBool("Move", false);
+        }
+
+        //anim.SetBool("Move", false);
+        debug = false;
     }
 
 
