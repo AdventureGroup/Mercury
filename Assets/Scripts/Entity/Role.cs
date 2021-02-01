@@ -5,6 +5,7 @@ using UnityEngine;
 public class Role : LivingEntity
 {
 
+
     /// <summary>
     /// 法力值
     /// </summary>
@@ -13,6 +14,8 @@ public class Role : LivingEntity
     public string State = "Noon";
     public float StiffTime = 0;
     public ConstProperty Value, Property;
+
+
     public override void Healing()
     {
         Health += Value.HealthRec;
@@ -22,11 +25,46 @@ public class Role : LivingEntity
 
     protected override void PerFrame()
     {
-
         StiffTime -= Time.deltaTime;
         if (StiffTime <= 0 && State == "Stiff")
             State = "Noon";
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            var a = transform.localScale;
+            a.x = Mathf.Abs(a.x);
+            transform.localScale = a;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            var a = transform.localScale;
+            a.x = -Mathf.Abs(a.x);
+            transform.localScale = a;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            SetFaceToLeft();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            SetFaceToRight();
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private bool FaceTo;
     public int GetFaceTo()

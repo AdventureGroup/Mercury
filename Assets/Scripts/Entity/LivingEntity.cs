@@ -9,7 +9,12 @@ public class LivingEntity : Entity
     public float Health;
     public float Velocity;
     public float Direction;
-    
+
+    /// <summary>
+    /// 动画
+    /// </summary>
+    public Animator anim;
+
     public event Action<LivingEntity, DamageClass> Attacked;
     
     /// <summary>
@@ -50,6 +55,7 @@ public class LivingEntity : Entity
     public override void OnCreated()
     {
         base.OnCreated();
+        anim = GetComponent<Animator>();
         Create();
     }
 

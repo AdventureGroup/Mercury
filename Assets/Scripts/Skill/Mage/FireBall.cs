@@ -8,6 +8,7 @@ public class FireBall : Skill
     TemperatureMagic TempMagic;
     public GameObject PreFireBall;
     public float Direction;
+    public bool Trigger1 = false;
     protected override void OnSkillInit()
     {
         SkillState = "FireBall";
@@ -20,9 +21,19 @@ public class FireBall : Skill
 
         PreFireBall = GameManager.Instance.Db.Effects[1].gameObject;
     }
+    protected override void BeforeUsing()
+    {
+        role.anim.SetBool("Attack", true);
+    }
     protected override void OnUsing()
     {
-        Releaseing = 0;
+        //Releaseing = 0;
+        if (Releaseing >= 0.4f)
+            return;
+        if (Trigger1)
+            return;
+        Trigger1 = true;
+        role.anim.SetBool("Attack", false);
         Vector2 pos1, pos2;
         pos1 = pos2 = transform.position;
         pos1.y += 1f;
@@ -80,6 +91,7 @@ public class FireBall : Skill
         to.Camp = role.Camp;
 
         Projectile pro = to.GetComponent<Projectile>();
+        pro.SetOnlyOnce();
         var _dam = new DamageClass();
         _dam.Damage = 100f;
         _dam.Element.Fire = true;
@@ -94,10 +106,11 @@ public class FireBall : Skill
     protected override void AfterUsing()
     {
         TempMagic.FireCast(1);
+        Trigger1 = false;
     }
     protected override bool CanCast()
     {
-        if (!Input.GetMouseButtonDown(0))
+        if (!Input.GetKeyDown(KeyCode.R))
             return false;
         if (CoolDowning > 0)
             return false;

@@ -76,6 +76,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (_deltaMove.sqrMagnitude <= FloatEpsilon) return;
         var direction = _deltaMove.normalized;
         var distanceLen = _deltaMove.magnitude;
@@ -122,6 +123,8 @@ public class CharacterController2D : MonoBehaviour
         _deltaMove = Vector2.zero;
         _isLastIgnore = ground && _isLastIgnore || IsIgnorePlatform;
         IsIgnorePlatform = false;
+
+
     }
 
     /// <summary>

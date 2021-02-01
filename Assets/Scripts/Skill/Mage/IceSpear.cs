@@ -7,6 +7,7 @@ public class IceSpear : Skill
     TemperatureMagic TempMagic;
     public GameObject PreIceSpear;
     public float Direction;
+    public bool Trigger1 = false;
     protected override void OnSkillInit()
     {
         PreIceSpear = GameManager.Instance.Db.Effects[0].gameObject;
@@ -20,12 +21,18 @@ public class IceSpear : Skill
     }
     protected override void BeforeUsing()
     {
-
+        role.anim.SetBool("Attack", true);
     }
 
     protected override void OnUsing()
     {
-        Releaseing = 0;
+        if (Releaseing >= 0.5f)
+            return;
+        if (Trigger1)
+            return;
+        Trigger1 = true;
+        //Releaseing = 100;
+        role.anim.SetBool("Attack", false);
         var to =  GameManager.Instance.ActiveWorld.Value.CreateEntity(PreIceSpear);
         to.transform.position = role.transform.position;
         to.Camp = role.Camp;
@@ -38,7 +45,7 @@ public class IceSpear : Skill
 
 
         Projectile pro = to.GetComponent<Projectile>();
-        pro.Velocity = 3;
+        pro.Velocity = 9;
         pro.Direction = role.GetFaceAngle();
         var _dam = new DamageClass();
         _dam.Damage = 60f;
@@ -59,6 +66,7 @@ public class IceSpear : Skill
     }
     protected override void AfterUsing()
     {
+        Trigger1 = false;
         TempMagic.IceCast(1);
     }
     protected override void OnUpdate()
