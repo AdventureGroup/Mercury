@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,15 +23,17 @@ public class PanelAttackInfo : MonoBehaviour
     public void AddInfo(string damageType, float value, object param)
     {
         _infoList.Add(new AtkInfo {DamageType = damageType, Param = param, Value = value});
-        var sb = new StringBuilder();
-        for (var i = 0; i < _infoList.Count; i++)
+        var txt = _info.text;
+        if (_infoList.Count == 1)
         {
-            var info = _infoList[i];
-            sb.Append($"{i}:");
-            sb.Append(info.ToString()).Append('\n');
+            txt += $"1:{_infoList[0].ToString()}";
+        }
+        else
+        {
+            txt += $"\n{_infoList.Count}:{_infoList[0].ToString()}";
         }
 
-        _info.text = sb.ToString();
+        _info.text = txt;
         Canvas.ForceUpdateCanvases();
         _scroll.verticalNormalizedPosition = 0f;
         Canvas.ForceUpdateCanvases();

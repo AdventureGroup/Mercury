@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1870333215859557020}
   - component: {fileID: 1870333215859557023}
   - component: {fileID: 1870333215859557022}
+  - component: {fileID: 1453344806723191322}
   - component: {fileID: 1870333215859557021}
   - component: {fileID: 1870333215859557017}
   - component: {fileID: 1870333215859557010}
-  - component: {fileID: 1453344806723191322}
   - component: {fileID: 5710639574662678637}
   - component: {fileID: -201210180818807382}
   - component: {fileID: -2701682137202259281}
@@ -115,6 +115,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8298804, y: 3.4683585}
   m_EdgeRadius: 0
+--- !u!50 &1453344806723191322
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870333215859557016}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &1870333215859557021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +152,7 @@ MonoBehaviour:
   Health: 100
   Velocity: 0
   Direction: 10
+  anim: {fileID: -2701682137202259281}
   Mana: 0
   SkillCast: NOON
   State: Noon
@@ -171,6 +193,7 @@ MonoBehaviour:
     SpeedAtk: 1
     SpeedMov: 1
     SpeedSkl: 1
+  debug: 0
 --- !u!114 &1870333215859557017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +213,7 @@ MonoBehaviour:
   PreIceSpear: {fileID: 1228320874925974336, guid: 4e5544b41fe4e8b4fb8bdc8ec8acb78a,
     type: 3}
   Direction: 1.68
+  Trigger1: 0
 --- !u!114 &1870333215859557010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,27 +235,6 @@ MonoBehaviour:
   ArgumentIce: 0.3
   FireLayers: 0
   IceLayers: 0
---- !u!50 &1453344806723191322
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870333215859557016}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &5710639574662678637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +275,7 @@ MonoBehaviour:
   StiffTime: 0
   PreFireBall: {fileID: 0}
   Direction: 0
+  Trigger1: 0
 --- !u!95 &-2701682137202259281
 Animator:
   serializedVersion: 3

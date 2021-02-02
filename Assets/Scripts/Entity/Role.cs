@@ -16,6 +16,7 @@ public class Role : LivingEntity
     public ConstProperty Value, Property;
 
     public bool debug;
+    public bool IsMoving;
 
 
     public override void Healing()
@@ -31,33 +32,6 @@ public class Role : LivingEntity
         StiffTime -= Time.deltaTime;
         if (StiffTime <= 0 && State == "Stiff")
             State = "Noon";
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            var a = transform.localScale;
-            a.x = Mathf.Abs(a.x);
-            transform.localScale = a;
-            SetFaceToRight();
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            var a = transform.localScale;
-            a.x = -Mathf.Abs(a.x);
-            transform.localScale = a;
-            SetFaceToLeft();
-        }
-
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            anim.SetBool("Move", true);
-        }
-        else
-        {
-            anim.SetBool("Move", false);
-        }
-
-        //anim.SetBool("Move", false);
         debug = false;
     }
 
@@ -87,11 +61,21 @@ public class Role : LivingEntity
     }
     public void SetFaceToLeft()
     {
+        var a = transform.localScale;
+        a.x = -Mathf.Abs(a.x);
+        transform.localScale = a;
         FaceTo = false;
     }
     public void SetFaceToRight()
     {
+        var a = transform.localScale;
+        a.x = Mathf.Abs(a.x);
+        transform.localScale = a;
         FaceTo = true;
     }
-
+    public void SetMoveState(bool isMoving)
+    {
+        IsMoving = isMoving;
+        anim.SetBool("Move", IsMoving);//真的每个Role的动画都有Move吗?
+    }
 }

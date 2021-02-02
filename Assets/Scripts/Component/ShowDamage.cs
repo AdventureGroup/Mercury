@@ -10,7 +10,7 @@ public class ShowDamage : MonoBehaviour
 
     private void Awake()
     {
-        _uiIns = Instantiate(InfoPanel, GameManager.Instance.UICanvas.transform).GetComponent<PanelAttackInfo>();
+        _uiIns = Instantiate(InfoPanel, GameManager.Instance.MainCanvas.transform).GetComponent<PanelAttackInfo>();
         Follow.Attacked += OnFollowAttacked;
     }
 
@@ -30,5 +30,12 @@ public class ShowDamage : MonoBehaviour
         _uiIns.transform.position = Follow.transform.position + Offset;
     }
 
-    private void OnDestroy() { Follow.Attacked -= OnFollowAttacked; }
+    private void OnDestroy()
+    {
+        Follow.Attacked -= OnFollowAttacked;
+        if (_uiIns)
+        {
+            Destroy(_uiIns.gameObject);
+        }
+    }
 }

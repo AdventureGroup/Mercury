@@ -9,14 +9,20 @@ public class ResourceDatabase : ScriptableObject
     /// <summary>
     /// 地图
     /// </summary>
-    public World[] Worlds;
+    public GameObject[] Worlds;
 
     /// <summary>
     /// 实体
     /// </summary>
-    public Entity[] Entities;
+    public GameObject[] Entities;
+
     /// <summary>
     /// 特效
     /// </summary>
-    public Entity[] Effects;
+    public GameObject[] Effects;
+
+    /// <summary>
+    /// UI对象
+    /// </summary>
+    public GameObject[] UIPanel;
 }

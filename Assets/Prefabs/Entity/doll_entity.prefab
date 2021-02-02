@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3765436126433305799}
   - component: {fileID: 3765436126433305798}
   - component: {fileID: 4991458930050118938}
+  - component: {fileID: 1461650866238268960}
   - component: {fileID: 3997741290904150240}
   m_Layer: 0
   m_Name: doll_entity
@@ -146,8 +147,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InfoPanel: {fileID: 4597125228777548427, guid: bc12909288c9b134ba186a00de3751cf,
     type: 3}
-  Follow: {fileID: 0}
-  Offset: {x: 1.76, y: 0, z: 0}
+  Follow: {fileID: 3997741290904150240}
+  Offset: {x: 0, y: 1.15, z: 0}
+--- !u!95 &1461650866238268960
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765436126433305795}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3997741290904150240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +184,7 @@ MonoBehaviour:
   Health: 100000
   Velocity: 0
   Direction: 0
+  anim: {fileID: 0}
   Mana: 0
   SkillCast: Noon
   State: Noon
@@ -204,3 +225,4 @@ MonoBehaviour:
     SpeedAtk: 1
     SpeedMov: 1
     SpeedSkl: 1
+  debug: 0

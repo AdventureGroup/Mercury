@@ -71,7 +71,7 @@ public class PanelDebug : MonoBehaviour
         {
             var prefab = _gm.Db.Entities[int.Parse(playerField.text)];
             var entity = _gm.ActiveWorld.Value.CreateEntity(prefab.gameObject);
-            entity.gameObject.AddComponent<TestPlayerMove>(); //TODO:实现真正的
+            entity.gameObject.AddComponent<PlayerMove>(); //TODO:实现真正的
         }
         catch (Exception e)
         {
@@ -94,7 +94,11 @@ public class PanelDebug : MonoBehaviour
         _gm.LoadWorld(0);
         var world = _gm.ActiveWorld.Value;
         var dummy = world.CreateEntity(_gm.Db.Entities[1].gameObject);
-        dummy.gameObject.AddComponent<TestPlayerMove>();
+        var playerMov = dummy.gameObject.AddComponent<PlayerMove>();
+        playerMov.SetPlayer(dummy.GetComponent<Role>()); //设置玩家移动
+        var info = dummy.gameObject.AddComponent<ShowPlayerInfo>();
+        info.InfoPanel = _gm.Db.UIPanel[2];
+        info.Show(); //设置玩家血量显示
 
         var doll = world.CreateEntity(_gm.Db.Entities[2].gameObject);
         // world.CreateEntity(_gm.Db.Entities[1].gameObject);

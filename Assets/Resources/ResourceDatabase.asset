@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: ResourceDatabase
   m_EditorClassIdentifier: 
   Worlds:
-  - {fileID: 3497227389770657068, guid: 86d6370975c9aa64d92985fa66a7ad4b, type: 3}
+  - {fileID: 3497227389770657066, guid: 86d6370975c9aa64d92985fa66a7ad4b, type: 3}
   Entities:
-  - {fileID: 5869267246727678765, guid: 65fd977799ef8c64b873490dcfd6e202, type: 3}
-  - {fileID: 1870333215859557021, guid: 22a0de948c7de1e4c95878aa358f62de, type: 3}
-  - {fileID: 0}
+  - {fileID: 5371805306209251713, guid: 65fd977799ef8c64b873490dcfd6e202, type: 3}
+  - {fileID: 1870333215859557016, guid: 22a0de948c7de1e4c95878aa358f62de, type: 3}
+  - {fileID: 3765436126433305795, guid: 23c53c48d13df084187a53b8d7709abc, type: 3}
   Effects:
-  - {fileID: -4118016664483588939, guid: 4e5544b41fe4e8b4fb8bdc8ec8acb78a, type: 3}
-  - {fileID: 2776870340067822091, guid: b8c132dfe291ce84fb822809f953b81d, type: 3}
+  - {fileID: 1228320874925974336, guid: 4e5544b41fe4e8b4fb8bdc8ec8acb78a, type: 3}
+  - {fileID: 7115734620796940829, guid: b8c132dfe291ce84fb822809f953b81d, type: 3}
+  UIPanel:
+  - {fileID: 8406710031089613778, guid: 792ab9390cd08f14a8bd4ec12f852144, type: 3}
+  - {fileID: 4597125228777548427, guid: bc12909288c9b134ba186a00de3751cf, type: 3}
+  - {fileID: 7195647084824747576, guid: 9d01389e31253974e89a469fa4bf2c1e, type: 3}
