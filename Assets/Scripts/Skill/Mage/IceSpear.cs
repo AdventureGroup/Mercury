@@ -12,7 +12,7 @@ public class IceSpear : Skill
     {
         PreIceSpear = GameManager.Instance.Db.Effects[0].gameObject;
         SkillState = "IceSpear";
-        CoolDownTime = 0;
+        CoolDownTime = 7;
         CastTime = 0;
         ReleaseTime = 0.7f;
         StiffTime = 0.1f;
@@ -22,6 +22,7 @@ public class IceSpear : Skill
     protected override void BeforeUsing()
     {
         role.anim.SetBool("Attack", true);
+        role.ManaRecover(-100);
     }
 
     protected override void OnUsing()
@@ -60,6 +61,8 @@ public class IceSpear : Skill
         if (CoolDowning > 0)
             return false;
         if (role.State != "Noon")
+            return false;
+        if (role.Mana < 100)
             return false;
 
         return true;

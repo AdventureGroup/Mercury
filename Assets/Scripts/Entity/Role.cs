@@ -26,7 +26,7 @@ public class Role : LivingEntity
     }
     public override void Healing()
     {
-        Health += Value.HealthRec;
+        Health += Value.HealthRec * Time.deltaTime;
         if (Health > Value.HealthMax) Health = Value.HealthMax;
     }
 

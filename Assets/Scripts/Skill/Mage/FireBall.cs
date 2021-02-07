@@ -14,7 +14,7 @@ public class FireBall : Skill
         SkillState = "FireBall";
         TempMagic = GetComponent<TemperatureMagic>();
 
-        CoolDownTime = 0;
+        CoolDownTime = 7;
         CastTime = 0;
         ReleaseTime = 0.7f;
         StiffTime = 0;
@@ -24,6 +24,7 @@ public class FireBall : Skill
     protected override void BeforeUsing()
     {
         role.anim.SetBool("Attack", true);
+        role.ManaRecover(-100 * TempMagic.FireCastMana);
     }
     protected override void OnUsing()
     {
@@ -116,7 +117,7 @@ public class FireBall : Skill
             return false;
         if (role.State != "Noon")
             return false;
-        if (role.Mana < 100)
+        if (role.Mana < 100 * TempMagic.FireCastMana)
             return false;
 
         return true;
