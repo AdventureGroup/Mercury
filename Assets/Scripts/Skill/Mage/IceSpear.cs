@@ -14,8 +14,8 @@ public class IceSpear : Skill
         SkillState = "IceSpear";
         CoolDownTime = 0;
         CastTime = 0;
-        ReleaseTime = 1;
-        StiffTime = 0;
+        ReleaseTime = 0.7f;
+        StiffTime = 0.1f;
 
         TempMagic = GetComponent<TemperatureMagic>();
     }
@@ -48,7 +48,7 @@ public class IceSpear : Skill
         pro.Velocity = 9;
         pro.Direction = role.GetFaceAngle();
         var _dam = new DamageClass();
-        _dam.Damage = 60f;
+        _dam.Damage = 60f * TempMagic.IceDamage;
         _dam.Element.Ice = true;
         pro.damage = _dam;
 

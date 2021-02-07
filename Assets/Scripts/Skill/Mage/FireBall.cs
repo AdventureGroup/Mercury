@@ -16,7 +16,7 @@ public class FireBall : Skill
 
         CoolDownTime = 0;
         CastTime = 0;
-        ReleaseTime = 1;
+        ReleaseTime = 0.7f;
         StiffTime = 0;
 
         PreFireBall = GameManager.Instance.Db.Effects[1].gameObject;
@@ -93,7 +93,7 @@ public class FireBall : Skill
         Projectile pro = to.GetComponent<Projectile>();
         pro.SetOnlyOnce();
         var _dam = new DamageClass();
-        _dam.Damage = 100f;
+        _dam.Damage = 100f * TempMagic.FireDamage;
         _dam.Element.Fire = true;
         pro.SetMoveX(0, pos1.x);
         pro.SetMoveY(pos2.y, pos1.y);
@@ -115,6 +115,8 @@ public class FireBall : Skill
         if (CoolDowning > 0)
             return false;
         if (role.State != "Noon")
+            return false;
+        if (role.Mana < 100)
             return false;
 
         return true;

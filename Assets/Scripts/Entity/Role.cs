@@ -18,16 +18,35 @@ public class Role : LivingEntity
     public bool debug;
     public bool IsMoving;
 
-
+    public override void OnCreated()
+    {
+        base.OnCreated();
+        Value = Property;
+        Mana = Value.ManaMax;
+    }
     public override void Healing()
     {
         Health += Value.HealthRec;
         if (Health > Value.HealthMax) Health = Value.HealthMax;
     }
 
+    public void ManaRecover(float Volume)
+    {
+        Mana += Volume;
+        if (Mana > Value.ManaMax)
+            Mana = Value.ManaMax;
+    }
+    public void HealthRecover(float Volume)
+    {
+        Health += Volume;
+        if (Health > Value.HealthMax)
+            Health = Value.HealthMax;
+    }
+
 
     protected override void PerFrame()
     {
+        ManaRecover(Value.ManaRec*Time.deltaTime);
         debug = false;
         StiffTime -= Time.deltaTime;
         if (StiffTime <= 0 && State == "Stiff")

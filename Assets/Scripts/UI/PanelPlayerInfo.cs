@@ -18,14 +18,14 @@ public class PanelPlayerInfo : MonoBehaviour
         if (_hold)
         {
             HpSlider.maxValue = _hold.Value.HealthMax;
-            HpMax.text = _hold.Value.HealthMax.ToString();
+            HpMax.text = Mathf.Round(_hold.Value.HealthMax).ToString();
             HpSlider.value = _hold.Health;
-            HpNow.text = _hold.Health.ToString();
+            HpNow.text = Mathf.Round(_hold.Health).ToString();
 
             MpSlider.maxValue = _hold.Value.ManaMax;
             MpSlider.value = _hold.Mana;
-            MpMax.text = _hold.Value.ManaMax.ToString();
-            MpNow.text = _hold.Mana.ToString();
+            MpMax.text = Mathf.Round(_hold.Value.ManaMax).ToString();
+            MpNow.text = Mathf.Round(_hold.Mana).ToString();
         }
         else
         {

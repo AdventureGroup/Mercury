@@ -30,7 +30,7 @@ public class PanelAttackInfo : MonoBehaviour
         }
         else
         {
-            txt += $"\n{_infoList.Count}:{_infoList[0].ToString()}";
+            txt += $"\n{_infoList.Count}:{_infoList[_infoList.Count - 1].ToString()}";
         }
 
         _info.text = txt;

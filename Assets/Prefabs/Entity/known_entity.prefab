@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camp: Main
-  Health: 100
+  Health: 600
   Velocity: 0
   Direction: 10
   anim: {fileID: -2701682137202259281}
@@ -177,9 +177,9 @@ MonoBehaviour:
     SpeedSkl: 1
   Property:
     HealthMax: 600
-    HealthRec: 0
-    ManaMax: 100
-    ManaRec: 0
+    HealthRec: 6
+    ManaMax: 10000
+    ManaRec: 30
     PhysicAtk: 0
     MagicAtk: 0
     PhysicDef: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
     SpeedMov: 1
     SpeedSkl: 1
   debug: 0
+  IsMoving: 0
 --- !u!114 &1870333215859557017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +234,7 @@ MonoBehaviour:
   Timer: 0
   ArgumentFire: 0.7
   ArgumentIce: 0.3
+  IceSpeedDown: 0
   FireLayers: 0
   IceLayers: 0
 --- !u!114 &5710639574662678637
