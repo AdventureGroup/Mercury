@@ -4,6 +4,7 @@
     /// 伤害
     /// </summary>
     public float Damage;
+    public bool RandomDamage = true;
     public struct elem
     {
         public bool Fire;
@@ -34,4 +35,19 @@
     /// </summary>
     public elem Element;
     public int Type;
+    public void SetPhy()
+    {
+        Type = 1;
+    }
+    public void SetMag()
+    {
+        Type = 2;
+    }
+    public void SetTrue()
+    {
+        Type = 0;
+    }
+    public static int PhyAttackCap = 1;
+    public static int MagAttackCap = 2;
+    public static int TrueAttackCap = 0;
 }

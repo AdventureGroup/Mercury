@@ -55,7 +55,8 @@ public class TemperatureMagic : Skill
         if (FireLayers > 0)
         {
             role.ManaRecover(role.Value.ManaRec * -1 * Time.deltaTime);
-            role.HealthRecover(role.Value.HealthMax * -0.02f * FireLayers * Time.deltaTime);
+            //Attf.DealDamage(role, role, role.Value.HealthMax * -0.01f * FireLayers * Time.deltaTime);
+            role.HealthRecover(role.Value.HealthMax * -0.01f * FireLayers * Time.deltaTime);
         }
             //role.HealthRecover(-10);
         if (IceLayers > 0)
