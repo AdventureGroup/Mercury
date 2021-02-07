@@ -256,6 +256,9 @@ MonoBehaviour:
   OneWayPlatformLayer:
     serializedVersion: 2
     m_Bits: 512
+  Wall:
+    serializedVersion: 2
+    m_Bits: 1024
   SkinWidth: 0.01
   MaxIterations: 2
   FloatEpsilon: 0.00001

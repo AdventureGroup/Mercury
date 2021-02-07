@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
+        // Debug.Log(_cc2d.IsGrounded);
+        
         var dir = new Vector2();
         if (Input.GetKey(KeyCode.W))
         {

@@ -21,6 +21,11 @@ public class CharacterController2D : MonoBehaviour
     public LayerMask OneWayPlatformLayer;
 
     /// <summary>
+    /// 墙（不能穿过，而且不属于地面）
+    /// </summary>
+    public LayerMask Wall;
+
+    /// <summary>
     /// 预留空间
     /// </summary>
     public float SkinWidth = 0.01f;
@@ -76,7 +81,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (_deltaMove.sqrMagnitude <= FloatEpsilon) return;
         var direction = _deltaMove.normalized;
         var distanceLen = _deltaMove.magnitude;
@@ -87,8 +91,8 @@ public class CharacterController2D : MonoBehaviour
         {
             useLayerMask = true,
             layerMask = IsIgnorePlatform || _isLastIgnore && ground
-                ? CollideLayer & ~OneWayPlatformLayer
-                : CollideLayer | OneWayPlatformLayer
+                ? (CollideLayer | Wall) & ~OneWayPlatformLayer
+                : (CollideLayer | Wall) | OneWayPlatformLayer
         };
         var maxIterations = MaxIterations;
         while (maxIterations-- > 0 && distanceLen > FloatEpsilon && direction.sqrMagnitude > FloatEpsilon)
@@ -123,8 +127,6 @@ public class CharacterController2D : MonoBehaviour
         _deltaMove = Vector2.zero;
         _isLastIgnore = ground && _isLastIgnore || IsIgnorePlatform;
         IsIgnorePlatform = false;
-
-
     }
 
     /// <summary>
