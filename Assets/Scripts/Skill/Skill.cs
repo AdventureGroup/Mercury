@@ -6,6 +6,7 @@ using UnityEngine;
 public class Skill : MonoBehaviour
 {
     public string SkillState;
+    public string AfterState = "Stiff";
     protected Role role;
     /// <summary>
     /// 属性
@@ -109,8 +110,8 @@ public class Skill : MonoBehaviour
             if (Releaseing <= 0)
             {
                 role.SkillCast = "Noon";
-                role.State = "Stiff";
-                role.StiffTime = StiffTime;
+                role.State = AfterState;
+                role.StiffTime = StiffTime + 0.1f;
                 AfterUsing();
             }
         }

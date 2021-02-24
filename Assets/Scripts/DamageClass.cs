@@ -19,13 +19,13 @@
         public override string ToString()
         {
             string s = "";
-            if (Fire) s += "Fire ";
-            if (Ice) s += "Ice ";
-            if (Thunder) s += "Thunder ";
-            if (Water) s += "Water ";
-            if (Wind) s += "Wind ";
-            if (Light) s += "Light ";
-            if (Dark) s += "Dark ";
+            if (Fire) s += "Fire";
+            if (Ice) s += "Ice";
+            if (Thunder) s += "Thunder";
+            if (Water) s += "Water";
+            if (Wind) s += "Wind";
+            if (Light) s += "Light";
+            if (Dark) s += "Dark";
 
             return s;
         }

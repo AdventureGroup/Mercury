@@ -9,7 +9,7 @@ public class TemperatureMagic : Skill
     /// <summary>
     /// 火焰的加成系数
     /// </summary>
-    private float ArgumentFire = 2f;
+    private float ArgumentFire = 0.7f;
     /// <summary>
     /// 寒冰的加成系数
     /// </summary>
@@ -27,6 +27,8 @@ public class TemperatureMagic : Skill
                 IceLayers--;
             else
                 FireLayers++;
+        if (FireLayers >= 3)
+            FireLayers = 3;
         Timer = MaxTimer;
     }
     public void IceCast(int CastCount)
@@ -36,6 +38,8 @@ public class TemperatureMagic : Skill
                 FireLayers--;
             else
                 IceLayers++;
+        if (IceLayers >= 3)
+            IceLayers = 3;
         Timer = MaxTimer;
     }
     public void FireTo(int ChangeTo)
@@ -54,13 +58,11 @@ public class TemperatureMagic : Skill
     {
         if (FireLayers > 0)
         {
-            role.ManaRecover(role.Value.ManaRec * -1 * Time.deltaTime);
-            //Attf.DealDamage(role, role, role.Value.HealthMax * -0.01f * FireLayers * Time.deltaTime);
+            role.ManaRecover(role.Value.ManaRec * -1f * Time.deltaTime);
             role.HealthRecover(role.Value.HealthMax * -0.01f * FireLayers * Time.deltaTime);
         }
-            //role.HealthRecover(-10);
         if (IceLayers > 0)
-            role.ManaRecover(role.Value.ManaRec * 0.3f * IceLayers * Time.deltaTime);
+            role.ManaRecover(role.Value.ManaRec * 1f * IceLayers * Time.deltaTime);
 
         Timer -= Time.deltaTime * (1 +  Mathf.Max(FireLayers,IceLayers) * 0.2f);
         if (Timer <= 0)

@@ -6,16 +6,17 @@ public class IceSpear : Skill
 {
     TemperatureMagic TempMagic;
     public GameObject PreIceSpear;
-    public float Direction;
     public bool Trigger1 = false;
+    public float Attack1 = 0.9f;
     protected override void OnSkillInit()
     {
         PreIceSpear = GameManager.Instance.Db.Effects[0].gameObject;
         SkillState = "IceSpear";
-        CoolDownTime = 7;
+        CoolDownTime = 3;
         CastTime = 0;
-        ReleaseTime = 0.7f;
+        ReleaseTime = 0.5f;
         StiffTime = 0.1f;
+        Attack1 *= role.Value.MagicAtk;
 
         TempMagic = GetComponent<TemperatureMagic>();
     }
@@ -27,7 +28,7 @@ public class IceSpear : Skill
 
     protected override void OnUsing()
     {
-        if (Releaseing >= 0.5f)
+        if (Releaseing >= 0.4f)
             return;
         if (Trigger1)
             return;
@@ -49,7 +50,16 @@ public class IceSpear : Skill
         pro.Velocity = 9;
         pro.Direction = role.GetFaceAngle();
         var _dam = new DamageClass();
-        _dam.Damage = 60f * TempMagic.IceDamage;
+        _dam.SetMag();
+        _dam.Damage = Attack1 * TempMagic.IceDamage;
+
+        //快速冻结 Flashfreeze
+        if (TryGetComponent<Flashfreeze>(out Flashfreeze com))
+        {
+            _dam.Damage += Attack1 * TempMagic.IceDamage * 1.5f;
+        }
+
+
         _dam.Element.Ice = true;
         pro.damage = _dam;
 
@@ -74,8 +84,5 @@ public class IceSpear : Skill
     }
     protected override void OnUpdate()
     {
-        Vector2 role2 = role.transform.position;
-        Vector2 mouse2 = GameManager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Direction = Vector2.SignedAngle(Vector2.right, mouse2 - role2);
     }
 }

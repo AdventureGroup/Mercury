@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1870333215859557020}
   - component: {fileID: 1870333215859557023}
   - component: {fileID: 1870333215859557022}
+  - component: {fileID: -7652073031668190927}
   - component: {fileID: 1453344806723191322}
   - component: {fileID: 1870333215859557021}
   - component: {fileID: 1870333215859557017}
@@ -115,6 +116,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8298804, y: 3.4683585}
   m_EdgeRadius: 0
+--- !u!114 &-7652073031668190927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870333215859557016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ece61bb7856fd24cad7059c9de5a28c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillState: 
+  AfterState: Stiff
+  Releaseing: 0
+  CoolDowning: 0
+  StiffTime: 0
+  PreIceBall: {fileID: 0}
+  PreFireBall: {fileID: 0}
+  PreElementBall: {fileID: 0}
+  Trigger1: 0
+  Trigger2: 0
+  Trigger3: 0
+  Trigger4: 0
+  Trigger5: 0
+  Attack1: 0.3
+  Attack2: 0.4
+  Attack3: 0.5
+  Attack: 0
 --- !u!50 &1453344806723191322
 Rigidbody2D:
   serializedVersion: 4
@@ -162,8 +192,8 @@ MonoBehaviour:
     HealthRec: 0
     ManaMax: 100
     ManaRec: 0
-    PhysicAtk: 0
-    MagicAtk: 0
+    PhysicAtk: 100
+    MagicAtk: 100
     PhysicDef: 0
     MagicDef: 0
     PointEndurance: 0
@@ -180,8 +210,8 @@ MonoBehaviour:
     HealthRec: 6
     ManaMax: 10000
     ManaRec: 30
-    PhysicAtk: 0
-    MagicAtk: 0
+    PhysicAtk: 100
+    MagicAtk: 10000
     PhysicDef: 0
     MagicDef: 0
     PointEndurance: 0
@@ -208,13 +238,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillState: 
+  AfterState: Stiff
   Releaseing: 0
   CoolDowning: 0
   StiffTime: 0
   PreIceSpear: {fileID: 1228320874925974336, guid: 4e5544b41fe4e8b4fb8bdc8ec8acb78a,
     type: 3}
-  Direction: 1.68
   Trigger1: 0
+  Attack1: 0.9
 --- !u!114 &1870333215859557010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,12 +259,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillState: 
+  AfterState: Stiff
   Releaseing: 0
   CoolDowning: 0
   StiffTime: 0
   Timer: 0
-  ArgumentFire: 0.7
-  ArgumentIce: 0.3
   IceSpeedDown: 0
   FireLayers: 0
   IceLayers: 0
@@ -275,12 +305,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillState: 
+  AfterState: Stiff
   Releaseing: 0
   CoolDowning: 0
   StiffTime: 0
   PreFireBall: {fileID: 0}
   Direction: 0
   Trigger1: 0
+  Attack1: 1.2
 --- !u!95 &-2701682137202259281
 Animator:
   serializedVersion: 3

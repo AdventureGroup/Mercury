@@ -9,15 +9,17 @@ public class FireBall : Skill
     public GameObject PreFireBall;
     public float Direction;
     public bool Trigger1 = false;
+    public float Attack1 = 1.2f;
     protected override void OnSkillInit()
     {
         SkillState = "FireBall";
         TempMagic = GetComponent<TemperatureMagic>();
 
-        CoolDownTime = 7;
+        CoolDownTime = 3;
         CastTime = 0;
-        ReleaseTime = 0.7f;
+        ReleaseTime = 0.5f;
         StiffTime = 0;
+        Attack1 *= role.Value.MagicAtk;
 
         PreFireBall = GameManager.Instance.Db.Effects[1].gameObject;
     }
@@ -94,7 +96,8 @@ public class FireBall : Skill
         Projectile pro = to.GetComponent<Projectile>();
         pro.SetOnlyOnce();
         var _dam = new DamageClass();
-        _dam.Damage = 100f * TempMagic.FireDamage;
+        _dam.SetMag();
+        _dam.Damage = Attack1 * TempMagic.FireDamage;
         _dam.Element.Fire = true;
         pro.SetMoveX(0, pos1.x);
         pro.SetMoveY(pos2.y, pos1.y);
