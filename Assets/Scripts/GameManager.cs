@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private Camera _mainCamera;
     [SerializeField] private World _activeWorld;
     [SerializeField] private ScreenCanvas _screenCanvas;
+    private InputManager _input;
 
     /// <summary>
     /// 数据
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public ScreenCanvas MainCanvas => _screenCanvas;
 
+    public InputManager Input => _input;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -36,9 +39,12 @@ public class GameManager : MonoBehaviour
         }
 
         _db = Resources.Load<ResourceDatabase>(nameof(ResourceDatabase)) ?? throw new ArgumentException();
+        _input = new InputManager();
     }
 
     private void Start() { _mainCamera = Camera.main; }
+
+    private void Update() { _input.Update(); }
 
     /// <summary>
     /// 加载世界
