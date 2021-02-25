@@ -1,6 +1,21 @@
 using System;
 using UnityEngine;
 
+public enum InputType
+{
+    Up,
+    Down,
+    Left,
+    Right,
+    Skill1,
+    Skill2,
+    UseItem,
+    Ultimate,
+    Dash,
+    NormalAttack,
+    Jump
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -40,6 +55,7 @@ public class GameManager : MonoBehaviour
 
         _db = Resources.Load<ResourceDatabase>(nameof(ResourceDatabase)) ?? throw new ArgumentException();
         _input = new InputManager();
+        RegisterKeyInput();
     }
 
     private void Start() { _mainCamera = Camera.main; }
@@ -76,5 +92,22 @@ public class GameManager : MonoBehaviour
         _activeWorld.OnUnload();
         Destroy(_activeWorld.gameObject);
         _activeWorld = null;
+    }
+
+    private void RegisterKeyInput()
+    {
+        _input.AddBinding(InputType.Up.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.UpArrow));
+        _input.AddBinding(InputType.Down.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.DownArrow));
+        _input.AddBinding(InputType.Left.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.LeftArrow));
+        _input.AddBinding(InputType.Right.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.RightArrow));
+
+        _input.AddBinding(InputType.NormalAttack.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.X));
+        _input.AddBinding(InputType.Jump.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.C));
+        _input.AddBinding(InputType.Dash.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.Z));
+
+        _input.AddBinding(InputType.Skill1.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.A));
+        _input.AddBinding(InputType.Skill2.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.S));
+        _input.AddBinding(InputType.UseItem.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.D));
+        _input.AddBinding(InputType.Ultimate.ToString(), KeyBindingInfo.CreateKeyboard(KeyCode.F));
     }
 }

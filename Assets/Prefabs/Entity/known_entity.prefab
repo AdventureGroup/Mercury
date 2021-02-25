@@ -128,11 +128,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ece61bb7856fd24cad7059c9de5a28c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillType: 1
   SkillState: 
   AfterState: Stiff
   Releaseing: 0
   CoolDowning: 0
   StiffTime: 0
+  IsRequestUse: 0
   PreIceBall: {fileID: 0}
   PreFireBall: {fileID: 0}
   PreElementBall: {fileID: 0}
@@ -237,11 +239,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bb8a3099d239043ad71b16aa588198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillType: 3
   SkillState: 
   AfterState: Stiff
   Releaseing: 0
   CoolDowning: 0
   StiffTime: 0
+  IsRequestUse: 0
   PreIceSpear: {fileID: 1228320874925974336, guid: 4e5544b41fe4e8b4fb8bdc8ec8acb78a,
     type: 3}
   Trigger1: 0
@@ -258,11 +262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27896a2b2550db5488e89d5f0621b8bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillType: 0
   SkillState: 
   AfterState: Stiff
   Releaseing: 0
   CoolDowning: 0
   StiffTime: 0
+  IsRequestUse: 0
   Timer: 0
   IceSpeedDown: 0
   FireLayers: 0
@@ -304,11 +310,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2ce685573cdf049a6f3c0ec264c0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillType: 2
   SkillState: 
   AfterState: Stiff
   Releaseing: 0
   CoolDowning: 0
   StiffTime: 0
+  IsRequestUse: 0
   PreFireBall: {fileID: 0}
   Direction: 0
   Trigger1: 0

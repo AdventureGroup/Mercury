@@ -135,8 +135,9 @@ public class NormalElementBall : Skill
     }
     protected override bool CanCast()
     {
-        if (!Input.GetKeyDown(KeyCode.X))
+        if (!IsRequestUse)
             return false;
+        IsRequestUse = false;
         if (role.State == "EB")
             return true;
         if (role.State != "Noon")

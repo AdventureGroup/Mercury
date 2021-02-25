@@ -99,7 +99,8 @@ public class PanelDebug : MonoBehaviour
         var info = dummy.gameObject.AddComponent<ShowPlayerInfo>();
         info.InfoPanel = _gm.Db.UIPanel[2];
         info.Show(); //设置玩家血量显示
-
+        dummy.gameObject.AddComponent<PlayerSkillHandle>(); //设置技能输入
+        
         var doll = world.CreateEntity(_gm.Db.Entities[2].gameObject);
         // world.CreateEntity(_gm.Db.Entities[1].gameObject);
     }

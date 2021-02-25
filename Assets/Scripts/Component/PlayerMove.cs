@@ -5,52 +5,65 @@ public class PlayerMove : MonoBehaviour
 {
     private Role _player;
     private CharacterController2D _cc2d;
+    private bool _canFallDown = true;
 
     public void SetPlayer(Role player) { _player = player; }
 
-    private void Start() { _cc2d = GetComponent<CharacterController2D>() ?? throw new ArgumentException(); }
+    private void Start()
+    {
+        _cc2d = GetComponent<CharacterController2D>() ?? throw new ArgumentException();
+        RegisterInputAction();
+    }
+
+    private void RegisterInputAction()
+    {
+        var input = GameManager.Instance.Input;
+        input.AddDelegation(InputType.Left.ToString(), GoLeftPressAction);
+        input.AddDelegation(InputType.Left.ToString(), GoReleaseAction, true);
+        input.AddDelegation(InputType.Right.ToString(), GoRightPressAction);
+        input.AddDelegation(InputType.Right.ToString(), GoReleaseAction, true);
+        input.AddDelegation(InputType.Jump.ToString(), JumpAction);
+        input.AddDelegation(InputType.Down.ToString(), DownAction);
+    }
+
+    private void GoLeftPressAction(in KeyInputEventArgs args)
+    {
+        _player.SetFaceToLeft();
+        _player.SetMoveState(true);
+        _cc2d.Move(new Vector2(-1 * (5 * Time.deltaTime), 0));
+        _canFallDown = true;
+    }
+
+    private void GoReleaseAction(in KeyInputEventArgs args) { _player.SetMoveState(false); }
+
+    private void GoRightPressAction(in KeyInputEventArgs args)
+    {
+        _player.SetFaceToRight();
+        _player.SetMoveState(true);
+        _cc2d.Move(new Vector2(1 * (5 * Time.deltaTime), 0));
+        _canFallDown = true;
+    }
+
+    private void JumpAction(in KeyInputEventArgs args)
+    {
+        _cc2d.Move(new Vector2(0, 1 * (5 * Time.deltaTime)));
+        _cc2d.IsIgnorePlatform = true;
+        _canFallDown = false;
+    }
+
+    private void DownAction(in KeyInputEventArgs args)
+    {
+        _cc2d.IsIgnorePlatform = true;
+        _canFallDown = true;
+    }
 
     private void Update()
     {
-        // Debug.Log(_cc2d.IsGrounded);
-        
-        var dir = new Vector2();
-        if (Input.GetKey(KeyCode.W))
+        if (_canFallDown)
         {
-            dir.y = 1;
-            _cc2d.IsIgnorePlatform = true;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            dir.y = -1;
-            _cc2d.IsIgnorePlatform = true;
+            _cc2d.Move(new Vector2(0, -2 * (5 * Time.deltaTime)));
         }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            dir.x += -1;
-            _player.SetFaceToLeft();
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            dir.x = 1;
-            _player.SetFaceToRight();
-        }
-
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            _player.SetMoveState(true);
-        }
-        else
-        {
-            _player.SetMoveState(false);
-        }
-        
-        if (dir.y == 0)
-        {
-            dir.y = -2;
-        }
-
-        _cc2d.Move(dir * (5 * Time.deltaTime));
+        _canFallDown = true;
     }
 }

@@ -66,8 +66,9 @@ public class IceSpear : Skill
     }
     protected override bool CanCast()
     {
-        if (!Input.GetMouseButtonDown(0))
+        if (!IsRequestUse)
             return false;
+        IsRequestUse = false;
         if (CoolDowning > 0)
             return false;
         if (role.State != "Noon")
