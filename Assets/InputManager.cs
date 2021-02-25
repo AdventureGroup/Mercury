@@ -2,22 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// 输入事件消息
-/// </summary>
 public class KeyInputEventArgs
 {
-    public readonly KeyBindingInfo BindingInfo;
+    public readonly KeyBindingInfo Info;
+    public readonly KeyBindingData Data;
 
-    /// <summary>
-    /// 距离第一次输入经过的时间，如果是0说明是这一帧按下的
-    /// </summary>
-    public readonly float ElapsedTime;
-
-    public KeyInputEventArgs(KeyBindingInfo bindingInfo, float elapsedTime)
+    public KeyInputEventArgs(in KeyBindingInfo info, KeyBindingData data)
     {
-        BindingInfo = bindingInfo;
-        ElapsedTime = elapsedTime;
+        Info = info;
+        Data = data;
     }
 }
 
@@ -59,7 +52,7 @@ public enum MouseButton
     Right = 1
 }
 
-public readonly struct KeyBindingInfo : IEquatable<KeyBindingInfo>
+public readonly struct KeyBindingInfo
 {
     public readonly KeyBindType Type;
     public readonly KeyCode Keyboard;
@@ -78,24 +71,11 @@ public readonly struct KeyBindingInfo : IEquatable<KeyBindingInfo>
         Keyboard = default;
         Mouse = mouse;
     }
+}
 
-    public bool Equals(KeyBindingInfo other)
-    {
-        return Type == other.Type && Keyboard == other.Keyboard && Mouse == other.Mouse;
-    }
-
-    public override bool Equals(object obj) { return obj is KeyBindingInfo other && Equals(other); }
-
-    public override int GetHashCode()
-    {
-        unchecked
-        {
-            var hashCode = (int) Type;
-            hashCode = (hashCode * 397) ^ (int) Keyboard;
-            hashCode = (hashCode * 397) ^ (int) Mouse;
-            return hashCode;
-        }
-    }
+public struct KeyBindingData
+{
+    public float ElapsedTime;
 }
 
 public class KeyBinding
@@ -103,29 +83,30 @@ public class KeyBinding
     private readonly string _name;
     private readonly KeyBindingInfo _bindingInfo;
     private readonly DelegateListKeyInput _delegateList;
+    private KeyBindingData _data;
 
     public string Name => _name;
     public KeyBindingInfo BindingInfo => _bindingInfo;
     public DelegateListKeyInput DelegateList => _delegateList;
+    public ref KeyBindingData Data => ref _data;
 
     public KeyBinding(string name, in KeyBindingInfo bindingInfo)
     {
         _name = name;
         _bindingInfo = bindingInfo;
         _delegateList = new DelegateListKeyInput();
+        _data = new KeyBindingData
+        {
+            ElapsedTime = 0.0f
+        };
     }
 }
 
 public class InputManager
 {
     private readonly SortedDictionary<string, KeyBinding> _bindingMap;
-    private readonly Dictionary<KeyBindingInfo, float> _keyElapsedTime;
 
-    public InputManager()
-    {
-        _bindingMap = new SortedDictionary<string, KeyBinding>();
-        _keyElapsedTime = new Dictionary<KeyBindingInfo, float>();
-    }
+    public InputManager() { _bindingMap = new SortedDictionary<string, KeyBinding>(); }
 
     public void Update()
     {
@@ -146,13 +127,13 @@ public class InputManager
                 {
                     if (Input.GetKey(info.Keyboard))
                     {
-                        var elapsed = _keyElapsedTime[info];
-                        list.Invoke(new KeyInputEventArgs(info, elapsed));
-                        _keyElapsedTime[info] = elapsed + deltaTime;
+                        ref var data = ref binding.Data;
+                        list.Invoke(new KeyInputEventArgs(in info, data));
+                        data.ElapsedTime += deltaTime;
                     }
                     else if (Input.GetKeyUp(info.Keyboard))
                     {
-                        _keyElapsedTime[info] = 0.0f;
+                        binding.Data.ElapsedTime = 0.0f;
                     }
 
                     break;
@@ -162,13 +143,13 @@ public class InputManager
                     var btnNum = (int) info.Mouse;
                     if (Input.GetMouseButton(btnNum))
                     {
-                        var elapsed = _keyElapsedTime[info];
-                        list.Invoke(new KeyInputEventArgs(info, elapsed));
-                        _keyElapsedTime[info] = elapsed + deltaTime;
+                        ref var data = ref binding.Data;
+                        list.Invoke(new KeyInputEventArgs(in info, data));
+                        data.ElapsedTime += deltaTime;
                     }
                     else if (Input.GetMouseButton(btnNum))
                     {
-                        _keyElapsedTime[info] = 0.0f;
+                        binding.Data.ElapsedTime = 0.0f;
                     }
 
                     break;
@@ -193,11 +174,6 @@ public class InputManager
 
         var binding = new KeyBinding(bindingName, in bindingInfo);
         _bindingMap.Add(bindingName, binding);
-
-        if (!_keyElapsedTime.ContainsKey(bindingInfo))
-        {
-            _keyElapsedTime.Add(bindingInfo, 0.0f);
-        }
     }
 
     public bool HasBinding(string bindingName) { return _bindingMap.ContainsKey(bindingName); }
