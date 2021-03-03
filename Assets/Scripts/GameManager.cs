@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
-
+//TODO :
+// 1、减淡GKD *************************************
+//2、弓箭手技能安排好，然后去skill那边写
+//3、 playmove里面的输入修改一下，
 public enum InputType
 {
     Up,

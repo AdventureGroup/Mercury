@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4991458930050118938}
   - component: {fileID: 1461650866238268960}
   - component: {fileID: 3997741290904150240}
+  - component: {fileID: -8813374940367301908}
+  - component: {fileID: 2562953365981976194}
   m_Layer: 0
   m_Name: doll_entity
   m_TagString: Entity
@@ -31,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 3765436126433305795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,11 +77,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d4f849d8bb1bd38488944ee614dc7538, type: 3}
-  m_Color: {r: 1, g: 0.78039217, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7e8c5c1231157d44aaad20632816202d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -99,18 +101,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.27454317, y: -0.16777515}
   m_SpriteTilingProperty:
-    border: {x: 0.099999994, y: 0.099999994, z: 0.099999994, w: 0.099999994}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 10, y: 10}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.6605463, y: 5.911227}
   m_EdgeRadius: 0
 --- !u!50 &3765436126433305798
 Rigidbody2D:
@@ -159,7 +161,7 @@ Animator:
   m_GameObject: {fileID: 3765436126433305795}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47c7c953cd3b8054a863d1fc734b6c0b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -190,14 +192,14 @@ MonoBehaviour:
   State: Noon
   StiffTime: 0
   Value:
-    HealthMax: 600
+    HealthMax: 10000
     HealthRec: 0
-    ManaMax: 100
+    ManaMax: 0
     ManaRec: 0
-    PhysicAtk: 0
-    MagicAtk: 0
-    PhysicDef: 0
-    MagicDef: 0
+    PhysicAtk: 600
+    MagicAtk: 300
+    PhysicDef: 300
+    MagicDef: 300
     PointEndurance: 0
     PointSpirit: 0
     PointIntelligence: 0
@@ -208,14 +210,14 @@ MonoBehaviour:
     SpeedMov: 1
     SpeedSkl: 1
   Property:
-    HealthMax: 600
+    HealthMax: 10000
     HealthRec: 0
     ManaMax: 100
     ManaRec: 0
-    PhysicAtk: 0
-    MagicAtk: 0
-    PhysicDef: 0
-    MagicDef: 0
+    PhysicAtk: 600
+    MagicAtk: 300
+    PhysicDef: 300
+    MagicDef: 300
     PointEndurance: 0
     PointSpirit: 0
     PointIntelligence: 0
@@ -226,3 +228,41 @@ MonoBehaviour:
     SpeedMov: 1
     SpeedSkl: 1
   debug: 0
+  IsMoving: 0
+--- !u!114 &-8813374940367301908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765436126433305795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32aa43da946491c8bfc269e989969a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsIgnorePlatform: 0
+  CollideLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  OneWayPlatformLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  Wall:
+    serializedVersion: 2
+    m_Bits: 0
+  SkinWidth: 0.01
+  MaxIterations: 2
+  FloatEpsilon: 0.00001
+--- !u!114 &2562953365981976194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765436126433305795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6cffff6ef0a8d4baf5c15f4496ef2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

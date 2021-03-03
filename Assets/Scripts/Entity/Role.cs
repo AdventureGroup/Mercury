@@ -96,5 +96,6 @@ public class Role : LivingEntity
     {
         IsMoving = isMoving;
         anim.SetBool("Move", IsMoving);//真的每个Role的动画都有Move吗?
+        //回答 ，先放在这里 以后改位置，这个东西应该放在主要角色控制器里面。
     }
 }

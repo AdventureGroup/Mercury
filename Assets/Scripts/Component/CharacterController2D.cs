@@ -48,9 +48,14 @@ public class CharacterController2D : MonoBehaviour
     private Vector2 _velocity;
 
     /// <summary>
+    /// 是否受重力影响
+    /// </summary>
+    public bool _GravityEffect = true;
+    /// <summary>
     /// 当前速度
     /// </summary>
-    public Vector2 Velocity => _velocity;
+    //public Vector2 Velocity => _velocity;
+
 
     /// <summary>
     /// 碰撞体
@@ -81,6 +86,13 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_GravityEffect)
+        {
+            Move(new Vector2(0, -9.8f * Time.deltaTime));
+            //var p = transform.position;
+            //p.y -= 9.8f * Time.deltaTime;
+            //transform.position = p;
+        }
         if (_deltaMove.sqrMagnitude <= FloatEpsilon) return;
         var direction = _deltaMove.normalized;
         var distanceLen = _deltaMove.magnitude;
