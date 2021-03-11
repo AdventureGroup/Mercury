@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6688166128925248573}
   - component: {fileID: 5969856219490376973}
   - component: {fileID: 8539705964622680093}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PreIceBall
   m_TagString: Entity
   m_Icon: {fileID: 0}

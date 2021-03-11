@@ -66,6 +66,10 @@ public class Projectile : LivingEntity
         {
             //Death();
         }
+        if (Health <= 0)
+        {
+            Death();
+        }
     }
     public override void Move()
     {
